@@ -1,4 +1,8 @@
+package model;
 import java.util.List;
+
+import Enum.Formacao;
+import Enum.Nivel;
 
 public class Professor {
     Nivel nivelProfessor;

@@ -1,3 +1,7 @@
+package model;
+import Enum.Formacao;
+import Enum.Nivel;
+
 public class TecnicoADM {
     Nivel nivelTecnico;
     Formacao formacaoTecnico;

@@ -1,4 +1,7 @@
+package DAO;
 import java.util.ArrayList;
+
+import model.*;;
 
 
 public class BancoDAO {

@@ -1,5 +1,6 @@
+package Enum;
 
-enum Nivel{
+public enum Nivel{
     I,
     II,
     III,

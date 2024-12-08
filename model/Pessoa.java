@@ -1,4 +1,7 @@
+package model;
 import java.time.LocalDate;
+
+import Enum.Genero;
 
 public abstract class Pessoa {
     
