@@ -10,27 +10,18 @@ public abstract class Pessoa {
     LocalDate dataNascimento;
     Genero genero;
     Endereco endereco;
-    Long matricula;
-    Double salario;
-    String departamento;
-    int cargaHoraria;
-    LocalDate dataIngresso;
+    
 
     public Pessoa(){
 
     }
 
-    public Pessoa(String nome, String cpf, LocalDate dataNascimento, Genero genero, Endereco endereco, Long matricula, Double salario, String departamento, int cargaHoraria,LocalDate dataIngresso){
+    public Pessoa(String nome, String cpf, LocalDate dataNascimento, Genero genero, Endereco endereco){
         this.nome = nome;
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
         this.genero = genero;
         this.endereco = endereco;
-        this.matricula = matricula;
-        this.salario = salario;
-        this.departamento = departamento;
-        this.cargaHoraria = cargaHoraria;
-        this.dataIngresso = dataIngresso;
     }
 
     public String getNome() {
@@ -63,36 +54,4 @@ public abstract class Pessoa {
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
-    public Long getMatricula() {
-        return matricula;
-    }
-    public void setMatricula(Long matricula) {
-        this.matricula = matricula;
-    }
-    public Double getSalario() {
-        return salario;
-    }
-    public void setSalario(Double salario) {
-        this.salario = salario;
-    }
-    public String getDepartamento() {
-        return departamento;
-    }
-    public void setDepartamento(String departamento) {
-        this.departamento = departamento;
-    }
-    public int getCargaHoraria() {
-        return cargaHoraria;
-    }
-    public void setCargaHoraria(int cargaHoraria) {
-        this.cargaHoraria = cargaHoraria;
-    }
-    public LocalDate getDataIngresso() {
-        return dataIngresso;
-    }
-    public void setDataIngresso(LocalDate dataIngresso) {
-        this.dataIngresso = dataIngresso;
-    }
-
-    
 }

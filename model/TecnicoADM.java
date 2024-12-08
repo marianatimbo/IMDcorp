@@ -2,7 +2,7 @@ package model;
 import Enum.Formacao;
 import Enum.Nivel;
 
-public class TecnicoADM {
+public class TecnicoADM extends Pessoa{
     Nivel nivelTecnico;
     Formacao formacaoTecnico;
     Boolean insalubridade;

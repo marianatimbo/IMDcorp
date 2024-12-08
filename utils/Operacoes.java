@@ -1,6 +1,11 @@
 package utils;
+
+import java.util.List;
+import Enum.*;
+
+
 public class Operacoes {
-    public void cadastrarProfessor(){
+    public void cadastrarProfessor(Nivel nivelProfessor, Formacao formacaoProfessor, List<String> disciplinas){
         
     }
 
