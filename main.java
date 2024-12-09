@@ -1,4 +1,12 @@
 import utils.*;
+import model.*;
+
+import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
+import Enum.*;
+
+
 public class main {
     public static void Menu(){
         System.out.println("=-=-=-=-= IMD CORP =-=-=-=-=");
@@ -15,27 +23,20 @@ public class main {
         System.out.println("10- Encerrar sessão");
     }
         
-    public static void main(String[] args) {
-        
+    public static void  main(String[] args){
         Menu();
-        int op = 2;
+
+        Endereco endereco = new Endereco("rua", 123, "bairro", "cidade", "cep");
+
+        List<String> disciplinas = Arrays.asList("Matematica", "Fisica");
+
+        LocalDate dataNascimento = LocalDate.of(1997, 10, 10);
+
+        Operacoes operacoes = new Operacoes();
+
+        operacoes.cadastrarProfessor("Joao Silva", "12345678901", dataNascimento, Genero.MASC, endereco, Nivel.I, Formacao.ESPECIALIZACAO, disciplinas, 12345, 5000.0, "Matematica", 40, dataNascimento);
+
+        operacoes.cadastrarProfessor("Joao Silva", "12345678901", dataNascimento, Genero.MASC, endereco, Nivel.I, Formacao.ESPECIALIZACAO, disciplinas, 12345, 5000.0, "Matematica", 40, dataNascimento);
         
-        while (op != 10) {
-            switch (op) {
-                case 1: //cadastrarProfessor();
-                    break;
-                default:
-                    break;
-            }
-        }
-        //cadastrarProfessor
-        //cadastrarTecnicoADM
-        //listarProfessores
-        //listarTecnicosADM
-        //deletarProfessor
-        //deletarTecnicoADM
-        //buscarProfessor
-        //buscarTecnicoADM
-        //CalcularSalario
     }
 }

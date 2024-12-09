@@ -1,6 +1,7 @@
 package model;
+import java.io.Serializable;
 
-public class Endereco {
+public class Endereco implements Serializable {
 
     String rua;
     int numero;
