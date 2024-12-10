@@ -35,8 +35,11 @@ public class main {
         Operacoes operacoes = new Operacoes();
 
         operacoes.cadastrarProfessor("Joao Silva", "12345678901", dataNascimento, Genero.MASC, endereco, Nivel.I, Formacao.ESPECIALIZACAO, disciplinas, 12345, 5000.0, "Matematica", 40, dataNascimento);
-
         operacoes.cadastrarProfessor("Joao Silva", "12345678901", dataNascimento, Genero.MASC, endereco, Nivel.I, Formacao.ESPECIALIZACAO, disciplinas, 12345, 5000.0, "Matematica", 40, dataNascimento);
+
+        // operacoes.listarFuncionarios();
+
+        operacoes.buscarProfessor(12345);
         
     }
 }

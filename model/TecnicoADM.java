@@ -1,16 +1,10 @@
 package model;
 import java.time.LocalDate;
-import java.io.Serializable;
 import Enum.Formacao;
 import Enum.Genero;
 import Enum.Nivel;
 
-public class TecnicoADM extends Pessoa implements Funcionario, Serializable{
-    private int matricula;
-    private Double salario;
-    private String departamento;
-    private Integer cargaHoraria;
-    private LocalDate dataIngresso;
+public class TecnicoADM extends Pessoa implements Funcionario{
 
     Nivel nivelTecnico;
     Formacao formacaoTecnico;
@@ -18,7 +12,7 @@ public class TecnicoADM extends Pessoa implements Funcionario, Serializable{
     Boolean funcaoGratificada;
 
     public TecnicoADM(String nome, String cpf, LocalDate dataNascimento, Genero genero, Endereco endereco,Nivel nivelTecnico, Formacao formacaoTecnico, Boolean insalubridade, Boolean funcaoGratificada, int matricula, Double salario, String departamento, Integer cargaHoraria,LocalDate dataIngresso) {
-        super(nome, cpf, dataNascimento, genero, endereco);
+        super(nome, cpf, dataNascimento, genero, endereco, matricula, salario, departamento, cargaHoraria, dataIngresso);
         this.nivelTecnico = nivelTecnico;
         this.formacaoTecnico = formacaoTecnico;
         this.insalubridade = insalubridade;
@@ -70,55 +64,6 @@ public class TecnicoADM extends Pessoa implements Funcionario, Serializable{
 
     public void setFuncaoGratificada(Boolean funcaoGratificada) {
         this.funcaoGratificada = funcaoGratificada;
-    }
-    @Override
-    public int getMatricula() {
-        return matricula;
-    }
-
-    @Override
-    public void setMatricula(int matricula) {
-        this.matricula = matricula;
-    }
-
-    @Override
-    public Double getSalario() {
-        return salario;
-    }
-
-    @Override
-    public void setSalario(Double salario) {
-        this.salario = salario;
-    }
-
-    @Override
-    public String getDepartamento() {
-        return departamento;
-    }
-
-    @Override
-    public void setDepartamento(String departamento) {
-        this.departamento = departamento;
-    }
-
-    @Override
-    public Integer getCargaHoraria() {
-        return cargaHoraria;
-    }
-
-    @Override
-    public void setCargaHoraria(Integer cargaHoraria) {
-        this.cargaHoraria = cargaHoraria;
-    }
-
-    @Override
-    public LocalDate getDataIngresso() {
-        return dataIngresso;
-    }
-
-    @Override
-    public void setDataIngresso(LocalDate dataIngresso) {
-        this.dataIngresso = dataIngresso;
     }
 
 }
