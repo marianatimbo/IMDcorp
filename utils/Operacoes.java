@@ -42,40 +42,91 @@ public class Operacoes {
         
     }
 
-    public void listarFuncionarios() {
+    public void listarProfessore(){
+        for(Pessoa pessoa : banco.getArrayPessoas()){
+            if(pessoa instanceof Professor p){
+                System.out.println("Nome: " + p.getNome());
+                System.out.println("Disciplina: " + p.getDisciplinas());
+            }
+        }
+    }
+
+    public void listarTecnicosADM(){
+        for(Pessoa pessoa : banco.getArrayPessoas()){
+            if(pessoa instanceof TecnicoADM t){
+                System.out.println("Nome: " + t.getNome());
+                System.out.println("Disciplina: " + t.getFuncaoGratificada());
+            }
+        }
     }
 
     public void deletarProfessor(int matricula){
-        
+        Pessoa pessoa = buscarFuncionario(matricula);
+
+        if(pessoa == null){
+            System.out.println("Funcionario não encontrado");
+        }
+        else if(pessoa instanceof Professor){
+            banco.getArrayPessoas().remove(pessoa);
+            banco.salvarDados();
+
+            System.out.println("Professor removido com sucesso!");
+        }
+        else{
+            System.out.println("Matricula não associada a professor.");
+        }
     }
 
-    public void deletarTecnicoADM(int matricula){}
+    public void deletarTecnicoADM(int matricula){
+        Pessoa pessoa = buscarFuncionario(matricula);
+
+        if(pessoa == null){
+            System.out.println("Funcionario não encontrado");
+        }
+        else if(pessoa instanceof TecnicoADM){
+            banco.getArrayPessoas().remove(pessoa);
+            banco.salvarDados();
+
+            System.out.println("Professor removido com sucesso!");
+        }
+        else{
+            System.out.println("Matricula não associada a Tecnico ADM.");
+        }
+    }
         
 
     public void buscarProfessor(int matricula){
-       Pessoa p = buscarFuncionario(matricula);
-        if(p != null){
-            System.out.println("Nome: "+ p.getNome());
-            System.out.println("CPF: " + p.getCpf());
-            System.out.println("Data de nasciemnto:" + p.getDataNascimento().toString());
-            System.out.println("Genero: " + p.getGenero());
-            System.out.println("Endereço: " + p.getEndereco().getRua() + p.getEndereco().getNumero() +  p.getEndereco().getBairro() + p.getEndereco().getCidade() + p.getEndereco().getCep() );
-            System.out.println("NivelProfessor: " + ((Professor)p).getNivelProfessor());
-            System.out.println("Formação profissional:" + ((Professor)p).getFormacaoProfessor());
-            System.out.println("Disciplinas: " + ((Professor)p).getDisciplinas());
-            System.out.println("Matricula: " + ((Professor)p).getMatricula());
-            System.out.println("Salario: " + ((Professor)p).getSalario());
-            System.out.println("Departamento: " + ((Professor)p).getDepartamento());
-            System.out.println("Carga Horário: "+ ((Professor)p).getCargaHoraria());
-       } 
+       Pessoa pessoa = buscarFuncionario(matricula);
+
+        if(pessoa == null){
+            System.out.println("Funcionario não encontrado.");
+        }
+        else if(pessoa instanceof Professor p){
+            System.out.println("Nome: " + p.getNome());
+            System.out.println("Disciplinas: " + p.getDisciplinas());
+        }
+        else{
+            System.out.println("Matricula não associada a professor.");
+        }
     }
 
     public void buscarTecnicoADM(int matricula){
+        Pessoa pessoa = buscarFuncionario(matricula);
 
+        if(pessoa == null){
+            System.out.println("Funcionario não encontrado.");
+        }
+        else if(pessoa instanceof TecnicoADM f){
+            System.out.println("Nome: " + f.getNome());
+            System.out.println("Função: " + f.getFuncaoGratificada());
+        }
+        else{
+            System.out.println("Matricula não associada a professor.");
+        }
     }
 
     public void CalcularSalario(){
-        
+                
     }
 
     public Pessoa buscarFuncionario(int matricula){
