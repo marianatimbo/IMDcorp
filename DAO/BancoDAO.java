@@ -6,6 +6,7 @@ import model.*;;
 
 
 public class BancoDAO implements Serializable {
+    
     private ArrayList<Pessoa> funcionarios;
     private final static String ARQUIVO_FUNCIONARIOS = "funcionarios.ser";
     private static BancoDAO banco;

@@ -22,7 +22,7 @@ public class Operacoes {
             System.out.println("Professor cadastrado com sucesso!");
         }
         else{
-            System.out.println("Esse Professor já está cadastrado!");
+            System.out.println("Essa matrícula já está cadastrado!");
         }
         
     }
@@ -34,28 +34,26 @@ public class Operacoes {
             TecnicoADM tecnicoADM = new TecnicoADM(nome, cpf, dataNascimento, genero, endereco, nivelTecnico, formacaoTecnico, insalubridade, funcaoGratificada, matricula, salario, departamento, cargaHoraria,dataIngresso );
 
             banco.getArrayPessoas().add(tecnicoADM);
-            System.out.println("Tecnico ADM cadastrado com sucesso!");
+            System.out.println("Técnico ADM cadastrado com sucesso!");
        }
        else{
-            System.out.println("Esse Tecnico ADM já está cadastrado!");
+            System.out.println("Essa matrícula já está cadastrado!");
        }
         
     }
 
-    public void listarProfessore(){
+    public void listarProfessores(){
         for(Pessoa pessoa : banco.getArrayPessoas()){
-            if(pessoa instanceof Professor p){
-                System.out.println("Nome: " + p.getNome());
-                System.out.println("Disciplina: " + p.getDisciplinas());
+            if(pessoa instanceof Professor professor){
+                imprimirProfessor(professor);
             }
         }
     }
 
     public void listarTecnicosADM(){
         for(Pessoa pessoa : banco.getArrayPessoas()){
-            if(pessoa instanceof TecnicoADM t){
-                System.out.println("Nome: " + t.getNome());
-                System.out.println("Disciplina: " + t.getFuncaoGratificada());
+            if(pessoa instanceof TecnicoADM tecnicoADM){
+                imprimirTecnicoADM(tecnicoADM);
             }
         }
     }
@@ -64,7 +62,7 @@ public class Operacoes {
         Pessoa pessoa = buscarFuncionario(matricula);
 
         if(pessoa == null){
-            System.out.println("Funcionario não encontrado");
+            System.out.println("Funcionário não encontrado");
         }
         else if(pessoa instanceof Professor){
             banco.getArrayPessoas().remove(pessoa);
@@ -73,7 +71,7 @@ public class Operacoes {
             System.out.println("Professor removido com sucesso!");
         }
         else{
-            System.out.println("Matricula não associada a professor.");
+            System.out.println("Matrícula não associada a professor.");
         }
     }
 
@@ -81,16 +79,16 @@ public class Operacoes {
         Pessoa pessoa = buscarFuncionario(matricula);
 
         if(pessoa == null){
-            System.out.println("Funcionario não encontrado");
+            System.out.println("Funcionário não encontrado");
         }
         else if(pessoa instanceof TecnicoADM){
             banco.getArrayPessoas().remove(pessoa);
             banco.salvarDados();
 
-            System.out.println("Professor removido com sucesso!");
+            System.out.println("Técnico removido com sucesso!");
         }
         else{
-            System.out.println("Matricula não associada a Tecnico ADM.");
+            System.out.println("Matrícula não associada a Técnico ADM.");
         }
     }
         
@@ -99,14 +97,13 @@ public class Operacoes {
        Pessoa pessoa = buscarFuncionario(matricula);
 
         if(pessoa == null){
-            System.out.println("Funcionario não encontrado.");
+            System.out.println("Funcionário não encontrado.");
         }
-        else if(pessoa instanceof Professor p){
-            System.out.println("Nome: " + p.getNome());
-            System.out.println("Disciplinas: " + p.getDisciplinas());
+        else if(pessoa instanceof Professor professor){
+            imprimirProfessor(professor);
         }
         else{
-            System.out.println("Matricula não associada a professor.");
+            System.out.println("Matrícula não associada a professor.");
         }
     }
 
@@ -114,14 +111,13 @@ public class Operacoes {
         Pessoa pessoa = buscarFuncionario(matricula);
 
         if(pessoa == null){
-            System.out.println("Funcionario não encontrado.");
+            System.out.println("Funcionário não encontrado.");
         }
-        else if(pessoa instanceof TecnicoADM f){
-            System.out.println("Nome: " + f.getNome());
-            System.out.println("Função: " + f.getFuncaoGratificada());
+        else if(pessoa instanceof TecnicoADM tecnicoADM){
+            imprimirTecnicoADM(tecnicoADM);
         }
         else{
-            System.out.println("Matricula não associada a professor.");
+            System.out.println("Matrícula não associada a técnico.");
         }
     }
 
@@ -136,5 +132,15 @@ public class Operacoes {
             }
         }
         return null;
+    }
+
+    public void imprimirProfessor(Professor professor){
+        System.out.println("Nome: " + professor.getNome());
+        System.out.println("Disciplinas: " + professor.getDisciplinas());
+    }
+
+    public void imprimirTecnicoADM(TecnicoADM tecnicoADM){
+        System.out.println("Nome: " + tecnicoADM.getNome());
+        System.out.println("Função: " + tecnicoADM.getFuncaoGratificada());
     }
 }

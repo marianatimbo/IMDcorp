@@ -6,22 +6,18 @@ import Enum.Nivel;
 
 public class TecnicoADM extends Pessoa implements Funcionario{
 
-    Nivel nivelTecnico;
-    Formacao formacaoTecnico;
-    Boolean insalubridade;
-    Boolean funcaoGratificada;
+    private Nivel nivelTecnico;
+    private Formacao formacaoTecnico;
+    private Boolean insalubridade;
+    private Boolean funcaoGratificada;
 
     public TecnicoADM(String nome, String cpf, LocalDate dataNascimento, Genero genero, Endereco endereco,Nivel nivelTecnico, Formacao formacaoTecnico, Boolean insalubridade, Boolean funcaoGratificada, int matricula, Double salario, String departamento, Integer cargaHoraria,LocalDate dataIngresso) {
         super(nome, cpf, dataNascimento, genero, endereco, matricula, salario, departamento, cargaHoraria, dataIngresso);
+        
         this.nivelTecnico = nivelTecnico;
         this.formacaoTecnico = formacaoTecnico;
         this.insalubridade = insalubridade;
         this.funcaoGratificada = funcaoGratificada;
-        this.matricula = matricula;
-        this.salario = salario;
-        this.departamento = departamento;
-        this.cargaHoraria = cargaHoraria;
-        this.dataIngresso = dataIngresso;
     }
     
     public TecnicoADM(){
@@ -31,6 +27,7 @@ public class TecnicoADM extends Pessoa implements Funcionario{
     @Override
     public Double calculaSalario(){
         //...
+        Double salario = 900.0;
         return salario;
     }
 

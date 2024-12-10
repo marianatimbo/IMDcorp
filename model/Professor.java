@@ -5,9 +5,9 @@ import java.util.List;
 import Enum.*;
 
 public class Professor extends Pessoa implements Funcionario{
-    Nivel nivelProfessor;
-    Formacao formacaoProfessor;
-    List<String> disciplinas;
+    private Nivel nivelProfessor;
+    private Formacao formacaoProfessor;
+    private List<String> disciplinas;
 
     public Professor(){
         super();
@@ -19,16 +19,12 @@ public class Professor extends Pessoa implements Funcionario{
         this.nivelProfessor = nivelProfessor;
         this.formacaoProfessor = formacaoProfessor;
         this.disciplinas = disciplinas;
-        this.matricula = matricula;
-        this.salario = salario;
-        this.departamento = departamento;
-        this.cargaHoraria = cargaHoraria;
-        this.dataIngresso = dataIngresso;
     }
     
     @Override
     public Double calculaSalario(){
         //...
+        Double salario = 900.0;
         return salario;
     }
 

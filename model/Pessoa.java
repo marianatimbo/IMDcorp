@@ -5,19 +5,17 @@ import Enum.Genero;
 
 public abstract class Pessoa implements Serializable {
     
-    String nome;
-    String cpf;
-    LocalDate dataNascimento;
-    Genero genero;
-    Endereco endereco;
-    int matricula;
-    Double salario;
-    String departamento;
-    Integer cargaHoraria;
-    LocalDate dataIngresso;
+    private String nome;
+    private String cpf;
+    private LocalDate dataNascimento;
+    private Genero genero;
+    private Endereco endereco;
+    private int matricula;
+    private Double salario;
+    private String departamento;
+    private Integer cargaHoraria;
+    private LocalDate dataIngresso;
     
-    
-
     public Pessoa(){
 
     }
@@ -33,7 +31,6 @@ public abstract class Pessoa implements Serializable {
         this.departamento = departamento;
         this.cargaHoraria = cargaHoraria;
         this.dataIngresso = dataIngresso;
-
     }
 
     public String getNome() {

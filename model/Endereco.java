@@ -3,11 +3,15 @@ import java.io.Serializable;
 
 public class Endereco implements Serializable {
 
-    String rua;
-    int numero;
-    String bairro;
-    String cidade;
-    String cep;
+    private String rua;
+    private int numero;
+    private String bairro;
+    private String cidade;
+    private String cep;
+    
+    public Endereco(){
+
+    }
 
     public Endereco(String rua, int numero, String bairro, String cidade, String cep){
         this.rua = rua;
@@ -15,10 +19,6 @@ public class Endereco implements Serializable {
         this.bairro = bairro;
         this.cidade = cidade;
         this.cep = cep;
-    }
-
-    public Endereco(){
-
     }
 
     public String getRua() {
@@ -52,5 +52,4 @@ public class Endereco implements Serializable {
         this.cep = cep;
     }
 
-    
 }
