@@ -1,6 +1,5 @@
 package utils;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import DAO.BancoDAO;
@@ -11,11 +10,11 @@ import model.*;
 public class Operacoes {
     static BancoDAO banco = BancoDAO.getInstance();
 
-    public void cadastrarProfessor(String nome, String cpf, LocalDate dataNascimento, Genero genero, Endereco endereco, Nivel nivelProfessor, Formacao formacaoProfessor, List<String> disciplinas, int matricula, Double salario, String departamento, Integer cargaHoraria,LocalDate dataIngresso){
+    public static void cadastrarProfessor(Pessoa pessoa, Nivel nivelProfessor, Formacao formacaoProfessor, List<String> disciplinas){
 
-        Pessoa pessoa = buscarFuncionario(matricula);
-        if(pessoa == null){
-            Professor professor = new Professor(nome, cpf, dataNascimento, genero, endereco, nivelProfessor, formacaoProfessor, disciplinas, matricula, salario, departamento, cargaHoraria, dataIngresso);
+    Pessoa pessoa2 = buscarFuncionario(pessoa.getMatricula());
+        if(pessoa2 == null){
+            Professor professor = new Professor(pessoa.getNome(), pessoa.getCpf(), pessoa.getDataNascimento(), pessoa.getGenero(), pessoa.getEndereco(), pessoa.getMatricula(), pessoa.getDepartamento(), pessoa.getCargaHoraria(), pessoa.getDataIngresso(), nivelProfessor, formacaoProfessor, disciplinas);
 
             banco.getArrayPessoas().add(professor);
             banco.salvarDados();
@@ -27,11 +26,11 @@ public class Operacoes {
         
     }
 
-    public void cadastrarTecnicoADM(String nome, String cpf, LocalDate dataNascimento, Genero genero, Endereco endereco,Nivel nivelTecnico, Formacao formacaoTecnico, Boolean insalubridade, Boolean funcaoGratificada, int matricula, Double salario, String departamento, Integer cargaHoraria,LocalDate dataIngresso) {
+    public static void cadastrarTecnicoADM(Pessoa pessoa, Nivel nivelTecnico, Formacao formacaoTecnico, Boolean insalubridade, Boolean funcaoGratificada) {
         
-        Pessoa pessoa = buscarFuncionario(matricula);
-        if(pessoa == null){
-            TecnicoADM tecnicoADM = new TecnicoADM(nome, cpf, dataNascimento, genero, endereco, nivelTecnico, formacaoTecnico, insalubridade, funcaoGratificada, matricula, salario, departamento, cargaHoraria,dataIngresso );
+        Pessoa pessoa2 = buscarFuncionario(pessoa.getMatricula());
+        if(pessoa2 == null){
+            TecnicoADM tecnicoADM = new TecnicoADM(pessoa.getNome(), pessoa.getCpf(), pessoa.getDataNascimento(), pessoa.getGenero(), pessoa.getEndereco(), pessoa.getMatricula(), pessoa.getDepartamento(), pessoa.getCargaHoraria(), pessoa.getDataIngresso(), nivelTecnico, formacaoTecnico, insalubridade, funcaoGratificada);
 
             banco.getArrayPessoas().add(tecnicoADM);
             System.out.println("Técnico ADM cadastrado com sucesso!");
@@ -42,7 +41,7 @@ public class Operacoes {
         
     }
 
-    public void listarProfessores(){
+    public static void listarProfessores(){
         for(Pessoa pessoa : banco.getArrayPessoas()){
             if(pessoa instanceof Professor professor){
                 imprimirProfessor(professor);
@@ -50,7 +49,7 @@ public class Operacoes {
         }
     }
 
-    public void listarTecnicosADM(){
+    public static void listarTecnicosADM(){
         for(Pessoa pessoa : banco.getArrayPessoas()){
             if(pessoa instanceof TecnicoADM tecnicoADM){
                 imprimirTecnicoADM(tecnicoADM);
@@ -58,7 +57,7 @@ public class Operacoes {
         }
     }
 
-    public void deletarProfessor(int matricula){
+    public static void deletarProfessor(int matricula){
         Pessoa pessoa = buscarFuncionario(matricula);
 
         if(pessoa == null){
@@ -75,7 +74,7 @@ public class Operacoes {
         }
     }
 
-    public void deletarTecnicoADM(int matricula){
+    public static void deletarTecnicoADM(int matricula){
         Pessoa pessoa = buscarFuncionario(matricula);
 
         if(pessoa == null){
@@ -93,7 +92,7 @@ public class Operacoes {
     }
         
 
-    public void buscarProfessor(int matricula){
+    public static void buscarProfessor(int matricula){
        Pessoa pessoa = buscarFuncionario(matricula);
 
         if(pessoa == null){
@@ -107,7 +106,7 @@ public class Operacoes {
         }
     }
 
-    public void buscarTecnicoADM(int matricula){
+    public static void buscarTecnicoADM(int matricula){
         Pessoa pessoa = buscarFuncionario(matricula);
 
         if(pessoa == null){
@@ -121,11 +120,21 @@ public class Operacoes {
         }
     }
 
-    public void CalcularSalario(){
-                
+    public static void CalcularSalario(int matricula){
+        Pessoa pessoa = buscarFuncionario(matricula);
+        Double salario;
+
+        if(pessoa instanceof Professor professor){
+            salario = professor.calculaSalario();
+            System.out.println(salario);
+        }
+        if(pessoa instanceof TecnicoADM tecnico){
+            salario = tecnico.calculaSalario();
+            System.out.println(salario);
+        }
     }
 
-    public Pessoa buscarFuncionario(int matricula){
+    public static Pessoa buscarFuncionario(int matricula){
         for(Pessoa p : banco.getArrayPessoas()){
             if(p.getMatricula() == matricula){
                 return p;
@@ -134,12 +143,12 @@ public class Operacoes {
         return null;
     }
 
-    public void imprimirProfessor(Professor professor){
+    public static void imprimirProfessor(Professor professor){
         System.out.println("Nome: " + professor.getNome());
         System.out.println("Disciplinas: " + professor.getDisciplinas());
     }
 
-    public void imprimirTecnicoADM(TecnicoADM tecnicoADM){
+    public static void imprimirTecnicoADM(TecnicoADM tecnicoADM){
         System.out.println("Nome: " + tecnicoADM.getNome());
         System.out.println("Função: " + tecnicoADM.getFuncaoGratificada());
     }

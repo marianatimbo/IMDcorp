@@ -11,7 +11,7 @@ public abstract class Pessoa implements Serializable {
     private Genero genero;
     private Endereco endereco;
     private int matricula;
-    private Double salario;
+    private Double salario ;
     private String departamento;
     private Integer cargaHoraria;
     private LocalDate dataIngresso;
@@ -20,14 +20,13 @@ public abstract class Pessoa implements Serializable {
 
     }
 
-    public Pessoa(String nome, String cpf, LocalDate dataNascimento, Genero genero, Endereco endereco, int matricula, Double salario, String departamento, Integer cargaHoraria, LocalDate dataIngresso){
+    public Pessoa(String nome, String cpf, LocalDate dataNascimento, Genero genero, Endereco endereco, int matricula, String departamento, Integer cargaHoraria, LocalDate dataIngresso){
         this.nome = nome;
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
         this.genero = genero;
         this.endereco = endereco;
         this.matricula = matricula;
-        this.salario = salario;
         this.departamento = departamento;
         this.cargaHoraria = cargaHoraria;
         this.dataIngresso = dataIngresso;

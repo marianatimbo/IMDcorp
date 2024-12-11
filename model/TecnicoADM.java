@@ -11,9 +11,9 @@ public class TecnicoADM extends Pessoa implements Funcionario{
     private Boolean insalubridade;
     private Boolean funcaoGratificada;
 
-    public TecnicoADM(String nome, String cpf, LocalDate dataNascimento, Genero genero, Endereco endereco,Nivel nivelTecnico, Formacao formacaoTecnico, Boolean insalubridade, Boolean funcaoGratificada, int matricula, Double salario, String departamento, Integer cargaHoraria,LocalDate dataIngresso) {
-        super(nome, cpf, dataNascimento, genero, endereco, matricula, salario, departamento, cargaHoraria, dataIngresso);
-        
+    public TecnicoADM(String nome, String cpf, LocalDate dataNascimento, Genero genero, Endereco endereco, int matricula, String departamento, Integer cargaHoraria,LocalDate dataIngresso,Nivel nivelTecnico, Formacao formacaoTecnico, Boolean insalubridade, Boolean funcaoGratificada) {
+        super(nome, cpf, dataNascimento, genero, endereco, matricula, departamento, cargaHoraria, dataIngresso);
+        this.setSalario(calculaSalario());
         this.nivelTecnico = nivelTecnico;
         this.formacaoTecnico = formacaoTecnico;
         this.insalubridade = insalubridade;
@@ -26,9 +26,41 @@ public class TecnicoADM extends Pessoa implements Funcionario{
     
     @Override
     public Double calculaSalario(){
-        //...
-        Double salario = 900.0;
-        return salario;
+        Double salarioBase = 2500.00;
+        Double salarioFinal;
+        double percentualNivel = (0.05 * (this.nivelTecnico.ordinal()) * salarioBase);
+        Double percentualFormacao = 0.0;
+        Double percentualInsalubridade = 0.0; 
+        Double percentualFGratificada = 0.0 ; 
+
+        switch (this.formacaoTecnico) {
+            case ESPECIALIZACAO:
+                percentualFormacao = salarioBase * 0.25; 
+                break;
+
+            case MESTRADO:
+                percentualFormacao =  salarioBase * 0.5; 
+                break;
+
+            case DOUTORADO:
+                percentualFormacao = salarioBase * 0.75; 
+                break;
+        
+            default:
+                break;
+        }
+        
+        if(this.insalubridade == true){
+            percentualInsalubridade = salarioBase * 0.5;
+        }
+
+        if(this.funcaoGratificada == true){
+            percentualFGratificada = salarioBase * 0.5;
+        }
+        
+        salarioFinal = salarioBase + percentualNivel + percentualFormacao + percentualInsalubridade + percentualFGratificada;
+
+        return salarioFinal;
     }
 
     public Nivel getNivelTecnico() {

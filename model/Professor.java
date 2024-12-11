@@ -13,9 +13,9 @@ public class Professor extends Pessoa implements Funcionario{
         super();
     }
 
-    public Professor(String nome, String cpf, LocalDate dataNascimento, Genero genero, Endereco endereco, Nivel nivelProfessor, Formacao formacaoProfessor, List<String> disciplinas, int matricula, Double salario, String departamento, Integer cargaHoraria,LocalDate dataIngresso){
-        super(nome, cpf, dataNascimento, genero, endereco, matricula,salario, departamento, cargaHoraria, dataIngresso);
-
+    public Professor(String nome, String cpf, LocalDate dataNascimento, Genero genero, Endereco endereco, int matricula, String departamento, Integer cargaHoraria,LocalDate dataIngresso, Nivel nivelProfessor, Formacao formacaoProfessor, List<String> disciplinas ){
+        super(nome, cpf, dataNascimento, genero, endereco, matricula, departamento, cargaHoraria, dataIngresso);
+        this.setSalario(calculaSalario());
         this.nivelProfessor = nivelProfessor;
         this.formacaoProfessor = formacaoProfessor;
         this.disciplinas = disciplinas;
@@ -23,9 +23,32 @@ public class Professor extends Pessoa implements Funcionario{
     
     @Override
     public Double calculaSalario(){
-        //...
-        Double salario = 900.0;
-        return salario;
+
+        Double salarioBase = 4000.00;
+        Double salarioFinal;
+        double percentualNivel = (0.05 * (this.nivelProfessor.ordinal()) * salarioBase);
+        Double percentualFormacao = 0.0;   
+
+        switch (this.formacaoProfessor) {
+            case ESPECIALIZACAO:
+                percentualFormacao = salarioBase * 0.25; 
+                break;
+
+            case MESTRADO:
+                percentualFormacao =  salarioBase * 0.5; 
+                break;
+
+            case DOUTORADO:
+                percentualFormacao = salarioBase * 0.75; 
+                break;
+        
+            default:
+                break;
+        }
+        
+        salarioFinal = salarioBase + percentualNivel + percentualFormacao;
+
+        return salarioFinal;
     }
 
     public Nivel getNivelProfessor() {
