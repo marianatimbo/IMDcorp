@@ -2,10 +2,12 @@ import utils.*;
 import model.*;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import DAO.BancoDAO;
 import Enum.*;
 
 public class Main {
@@ -24,118 +26,112 @@ public class Main {
         System.out.println("10- Encerrar sessão");
     }
 
-    public static void informacoesBasicas(Pessoa pessoa) {
+    public static void informacoesBasicas(Pessoa pessoa, Scanner scanner) {
 
-        Scanner scanner = new Scanner(System.in);
+        System.out.print("Nome: ");
+        String nome = scanner.nextLine();
+        pessoa.setNome(nome);
+
+        System.out.print("CPF: ");
+        String cpf = scanner.nextLine();
+        pessoa.setCpf(cpf);
+
+        System.out.print("Data de Nascimento (yyyy-MM-dd): ");
+        String dataNascimentoInput = scanner.nextLine();
+        LocalDate dataNascimento;
+
         try {
-
-            System.out.print("Nome: ");
-            String nome = scanner.nextLine();
-            pessoa.setNome(nome);
-            
-            System.out.print("CPF: ");
-            String cpf = scanner.nextLine();
-            pessoa.setCpf(cpf);
-            
-            System.out.print("Data de Nascimento (yyyy-MM-dd): ");
-            String dataNascimentoInput = scanner.nextLine();
-            LocalDate dataNascimento;
-            
-            try {
-                dataNascimento = LocalDate.parse(dataNascimentoInput);
-                pessoa.setDataNascimento(dataNascimento);
-            } catch (Exception e) {
-                System.out.println("Data inválida. Tente novamente.");
-                return;
-            }
-            
-            System.out.print("Gênero (MASC/FEM/OUTRO): ");
-            String generoInput = scanner.nextLine().toUpperCase();
-            Genero genero;
-            try {
-                genero = Genero.valueOf(generoInput);
-            pessoa.setGenero(genero);
-        } catch (IllegalArgumentException e) {
-            System.out.println("Gênero inválido. Tente novamente.");
+            dataNascimento = LocalDate.parse(dataNascimentoInput);
+        } catch (Exception e) {
+            System.out.println("Data inválida.");
             return;
         }
-        
+        pessoa.setDataNascimento(dataNascimento);
+
+        System.out.print("Gênero (MASC/FEM/OUTRO): ");
+        String generoInput = scanner.nextLine().toUpperCase();
+        Genero genero;
+        try {
+            genero = Genero.valueOf(generoInput);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Gênero inválido.");
+            return;
+        }
+        pessoa.setGenero(genero);
+
         System.out.println("------ ENDEREÇO ------- ");
-        
+
         System.out.print("Rua: ");
         String rua = scanner.nextLine();
-        
+
         System.out.print("Número: ");
         int numero;
         try {
             numero = Integer.parseInt(scanner.nextLine());
         } catch (NumberFormatException e) {
-            System.out.println("Número inválido. Tente novamente.");
+            System.out.println("Número inválido. ");
             return;
         }
-        
+
         System.out.print("Bairro: ");
         String bairro = scanner.nextLine();
-        
+
         System.out.print("Cidade: ");
         String cidade = scanner.nextLine();
-        
+
         System.out.print("CEP: ");
         String cep = scanner.nextLine();
         Endereco endereco = new Endereco(rua, numero, bairro, cidade, cep);
         pessoa.setEndereco(endereco);
         System.out.println("-----------------------");
-        
-        System.out.print("Salário: ");
-        Double salario;
-        try {
-            salario = Double.parseDouble(scanner.nextLine());
-            pessoa.setSalario(salario);
-        } catch (NumberFormatException e) {
-            System.out.println("Salário inválido. Tente novamente.");
-            return;
-        }
-        
+
         System.out.print("Departamento: ");
         String departamento = scanner.nextLine();
         pessoa.setDepartamento(departamento);
-        
+
         System.out.print("Carga Horária: ");
         Integer cargaHoraria;
         try {
             cargaHoraria = Integer.parseInt(scanner.nextLine());
-            pessoa.setCargaHoraria(cargaHoraria);
         } catch (NumberFormatException e) {
-            System.out.println("Carga horária inválida. Tente novamente.");
+            System.out.println("Carga horária inválida.");
             return;
         }
-        
+        pessoa.setCargaHoraria(cargaHoraria);
+
         System.out.print("Data de Ingresso (yyyy-MM-dd): ");
+        String dataIngressoInput = scanner.nextLine().trim();
         LocalDate dataIngresso;
         try {
-            dataIngresso = LocalDate.parse(scanner.nextLine());
-            pessoa.setDataIngresso(dataIngresso);
-        } catch (Exception e) {
-            System.out.println("Data inválida. Tente novamente.");
+            dataIngresso = LocalDate.parse(dataIngressoInput);
+            
+        } catch (DateTimeParseException e) {
+            System.out.println("Data inválida. Use o formato yyyy-MM-dd.");
             return;
         }
-        
-    } finally {
-        
-        scanner.close();
+        pessoa.setDataIngresso(dataIngresso);
+
+        System.out.print("Digite a matrícula: ");
+        int matricula;
+        try {
+            matricula = Integer.parseInt(scanner.nextLine());
+        } catch (NumberFormatException e) {
+            System.out.println("Matrícula inválida.");
+            return;
+        }
+        pessoa.setMatricula(matricula);
     }
-        
-    }
-    
+
     public static void main(String[] args) {
-        
+        BancoDAO banco = BancoDAO.getInstance();
+        banco.carregarDados();
         Scanner scanner = new Scanner(System.in);
-        
+
         int opcao = 0;
         
         while (opcao != 10) {
             Menu();
-            
+
             System.out.print("Escolha uma opção: ");
             if (scanner.hasNextInt()) {
                 opcao = scanner.nextInt();
@@ -153,7 +149,7 @@ public class Main {
                     System.out.println("Preencha as seguintes informações:");
 
                     Professor newProf = new Professor();
-                    informacoesBasicas(newProf);
+                    informacoesBasicas(newProf, scanner);
 
                     System.out.print("Nível (I, II, III, etc.): ");
                     String nivelInput = scanner.nextLine().toUpperCase();
@@ -186,6 +182,7 @@ public class Main {
 
                     Operacoes.cadastrarProfessor(newProf, nivelProfessor, formacaoProfessor, disciplinas);
                     System.out.println("\n=-=-==-=-=-=-=-=-=-=-=-=-=-");
+
                     break;
 
                 case 2:
@@ -194,7 +191,7 @@ public class Main {
                     System.out.println("Preencha as seguintes informações:");
 
                     TecnicoADM newTecnicoADM = new TecnicoADM();
-                    informacoesBasicas(newTecnicoADM);
+                    informacoesBasicas(newTecnicoADM, scanner);
 
                     System.out.print("Nível (I, II, III, etc.): ");
                     nivelInput = scanner.nextLine().toUpperCase();
@@ -235,8 +232,10 @@ public class Main {
                         break;
                     }
 
-                    Operacoes.cadastrarTecnicoADM(newTecnicoADM, nivelTecnicoADM, formacaoTecnicoADM, insalubridade,funcaoGratificada);
+                    Operacoes.cadastrarTecnicoADM(newTecnicoADM, nivelTecnicoADM, formacaoTecnicoADM, insalubridade,
+                            funcaoGratificada);
                     System.out.println("\n=-=-==-=-=-=-=-=-=-=-=-=-=-");
+
                     break;
                 case 3:
                     System.out.println("\n=-=-==-=-=-=-=-=-=-=-=-=-=-");
@@ -270,7 +269,7 @@ public class Main {
                     Operacoes.deletarProfessor(matricula);
                     System.out.println("\n=-=-==-=-=-=-=-=-=-=-=-=-=-");
                     break;
-                
+
                 case 6:
                     System.out.println("\n=-=-==-=-=-=-=-=-=-=-=-=-=-");
                     System.out.println("DELETAR TECNICO ADM: ");
@@ -302,8 +301,8 @@ public class Main {
                     Operacoes.buscarProfessor(matricula);
                     System.out.println("\n=-=-==-=-=-=-=-=-=-=-=-=-=-");
                     break;
-                
-                case 8 : 
+
+                case 8:
                     System.out.println("\n=-=-==-=-=-=-=-=-=-=-=-=-=-");
                     System.out.println("BUSCAR UM TECNICO ADM: ");
 
@@ -318,7 +317,7 @@ public class Main {
                     Operacoes.buscarTecnicoADM(matricula);
                     System.out.println("\n=-=-==-=-=-=-=-=-=-=-=-=-=-");
                     break;
-                
+
                 case 9:
                     System.out.println("\n=-=-==-=-=-=-=-=-=-=-=-=-=-");
                     System.out.println("MOSTRAR SALÁRIO DE FUNCIONÁRIO: ");
@@ -334,12 +333,17 @@ public class Main {
                     Operacoes.CalcularSalario(matricula);
                     System.out.println("\n=-=-==-=-=-=-=-=-=-=-=-=-=-");
                     break;
+                case 10:
+                    System.out.println("Finalizando operação...");
+                    banco.salvarDados();
+                    break;
+
                 default:
                     System.out.println("Opção inválida ou não implementada. Tente novamente.");
                     break;
             }
-        }
 
+        }
         scanner.close();
     }
 }

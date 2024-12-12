@@ -10,6 +10,7 @@ import model.*;
 public class Operacoes {
     static BancoDAO banco = BancoDAO.getInstance();
 
+
     public static void cadastrarProfessor(Pessoa pessoa, Nivel nivelProfessor, Formacao formacaoProfessor, List<String> disciplinas){
 
     Pessoa pessoa2 = buscarFuncionario(pessoa.getMatricula());
@@ -17,7 +18,7 @@ public class Operacoes {
             Professor professor = new Professor(pessoa.getNome(), pessoa.getCpf(), pessoa.getDataNascimento(), pessoa.getGenero(), pessoa.getEndereco(), pessoa.getMatricula(), pessoa.getDepartamento(), pessoa.getCargaHoraria(), pessoa.getDataIngresso(), nivelProfessor, formacaoProfessor, disciplinas);
 
             banco.getArrayPessoas().add(professor);
-            banco.salvarDados();
+            // banco.salvarDados();
             System.out.println("Professor cadastrado com sucesso!");
         }
         else{
@@ -42,6 +43,7 @@ public class Operacoes {
     }
 
     public static void listarProfessores(){
+        System.out.println(banco.getArrayPessoas().size());
         for(Pessoa pessoa : banco.getArrayPessoas()){
             if(pessoa instanceof Professor professor){
                 imprimirProfessor(professor);
@@ -65,7 +67,7 @@ public class Operacoes {
         }
         else if(pessoa instanceof Professor){
             banco.getArrayPessoas().remove(pessoa);
-            banco.salvarDados();
+            // banco.salvarDados();
 
             System.out.println("Professor removido com sucesso!");
         }
@@ -82,7 +84,7 @@ public class Operacoes {
         }
         else if(pessoa instanceof TecnicoADM){
             banco.getArrayPessoas().remove(pessoa);
-            banco.salvarDados();
+            // banco.salvarDados();
 
             System.out.println("Técnico removido com sucesso!");
         }

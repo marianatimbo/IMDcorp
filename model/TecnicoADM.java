@@ -12,8 +12,8 @@ public class TecnicoADM extends Pessoa implements Funcionario{
     private Boolean funcaoGratificada;
 
     public TecnicoADM(String nome, String cpf, LocalDate dataNascimento, Genero genero, Endereco endereco, int matricula, String departamento, Integer cargaHoraria,LocalDate dataIngresso,Nivel nivelTecnico, Formacao formacaoTecnico, Boolean insalubridade, Boolean funcaoGratificada) {
-        super(nome, cpf, dataNascimento, genero, endereco, matricula, departamento, cargaHoraria, dataIngresso);
-        this.setSalario(calculaSalario());
+        super(nome, cpf, dataNascimento, genero, endereco, matricula, departamento, cargaHoraria, dataIngresso, 0.0);
+        
         this.nivelTecnico = nivelTecnico;
         this.formacaoTecnico = formacaoTecnico;
         this.insalubridade = insalubridade;
@@ -59,6 +59,7 @@ public class TecnicoADM extends Pessoa implements Funcionario{
         }
         
         salarioFinal = salarioBase + percentualNivel + percentualFormacao + percentualInsalubridade + percentualFGratificada;
+        this.setSalario(salarioFinal);
 
         return salarioFinal;
     }

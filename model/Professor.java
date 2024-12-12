@@ -14,8 +14,8 @@ public class Professor extends Pessoa implements Funcionario{
     }
 
     public Professor(String nome, String cpf, LocalDate dataNascimento, Genero genero, Endereco endereco, int matricula, String departamento, Integer cargaHoraria,LocalDate dataIngresso, Nivel nivelProfessor, Formacao formacaoProfessor, List<String> disciplinas ){
-        super(nome, cpf, dataNascimento, genero, endereco, matricula, departamento, cargaHoraria, dataIngresso);
-        this.setSalario(calculaSalario());
+        super(nome, cpf, dataNascimento, genero, endereco, matricula, departamento, cargaHoraria, dataIngresso, 0.0);
+
         this.nivelProfessor = nivelProfessor;
         this.formacaoProfessor = formacaoProfessor;
         this.disciplinas = disciplinas;
@@ -47,7 +47,7 @@ public class Professor extends Pessoa implements Funcionario{
         }
         
         salarioFinal = salarioBase + percentualNivel + percentualFormacao;
-
+        this.setSalario(salarioFinal);
         return salarioFinal;
     }
 
