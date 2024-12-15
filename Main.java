@@ -181,7 +181,7 @@ public class Main {
                     }
 
                     Operacoes.cadastrarProfessor(newProf, nivelProfessor, formacaoProfessor, disciplinas);
-                    System.out.println("\n=-=-==-=-=-=-=-=-=-=-=-=-=-");
+                    System.out.println("=-=-==-=-=-=-=-=-=-=-=-=-=-\n");
 
                     break;
 
@@ -234,7 +234,7 @@ public class Main {
 
                     Operacoes.cadastrarTecnicoADM(newTecnicoADM, nivelTecnicoADM, formacaoTecnicoADM, insalubridade,
                             funcaoGratificada);
-                    System.out.println("\n=-=-==-=-=-=-=-=-=-=-=-=-=-");
+                    System.out.println("=-=-==-=-=-=-=-=-=-=-=-=-=-\n");
 
                     break;
                 case 3:
@@ -242,7 +242,7 @@ public class Main {
                     System.out.println("LISTAR TODOS OS PROFESSORES: ");
 
                     Operacoes.listarProfessores();
-                    System.out.println("\n=-=-==-=-=-=-=-=-=-=-=-=-=-");
+                    System.out.println("=-=-==-=-=-=-=-=-=-=-=-=-=-\n");
                     break;
 
                 case 4:
@@ -250,7 +250,7 @@ public class Main {
                     System.out.println("LISTAR TODOS OS TECNICOS ADM: ");
 
                     Operacoes.listarTecnicosADM();
-                    System.out.println("\n=-=-==-=-=-=-=-=-=-=-=-=-=-");
+                    System.out.println("=-=-==-=-=-=-=-=-=-=-=-=-=-\n");
                     break;
 
                 case 5:
@@ -267,7 +267,7 @@ public class Main {
                     }
 
                     Operacoes.deletarProfessor(matricula);
-                    System.out.println("\n=-=-==-=-=-=-=-=-=-=-=-=-=-");
+                    System.out.println("=-=-==-=-=-=-=-=-=-=-=-=-=-\n");
                     break;
 
                 case 6:
@@ -283,7 +283,7 @@ public class Main {
                     }
 
                     Operacoes.deletarTecnicoADM(matricula);
-                    System.out.println("\n=-=-==-=-=-=-=-=-=-=-=-=-=-");
+                    System.out.println("=-=-==-=-=-=-=-=-=-=-=-=-=-\n");
                     break;
 
                 case 7:
@@ -299,7 +299,7 @@ public class Main {
                     }
 
                     Operacoes.buscarProfessor(matricula);
-                    System.out.println("\n=-=-==-=-=-=-=-=-=-=-=-=-=-");
+                    System.out.println("=-=-==-=-=-=-=-=-=-=-=-=-=-\n");
                     break;
 
                 case 8:
@@ -315,7 +315,7 @@ public class Main {
                     }
 
                     Operacoes.buscarTecnicoADM(matricula);
-                    System.out.println("\n=-=-==-=-=-=-=-=-=-=-=-=-=-");
+                    System.out.println("=-=-==-=-=-=-=-=-=-=-=-=-=-\n");
                     break;
 
                 case 9:
@@ -331,7 +331,7 @@ public class Main {
                     }
 
                     Operacoes.CalcularSalario(matricula);
-                    System.out.println("\n=-=-==-=-=-=-=-=-=-=-=-=-=-");
+                    System.out.println("=-=-==-=-=-=-=-=-=-=-=-=-=-\n");
                     break;
                 case 10:
                     System.out.println("Finalizando operação...");
