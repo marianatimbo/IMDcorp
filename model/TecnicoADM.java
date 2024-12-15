@@ -59,8 +59,6 @@ public class TecnicoADM extends Pessoa implements Funcionario{
         }
         
         salarioFinal = salarioBase + percentualNivel + percentualFormacao + percentualInsalubridade + percentualFGratificada;
-        this.setSalario(salarioFinal);
-
         return salarioFinal;
     }
 

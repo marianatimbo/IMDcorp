@@ -22,7 +22,7 @@ public class Main {
         System.out.println("6- Deletar Tecnicos ADM");
         System.out.println("7- Buscar Professor");
         System.out.println("8- Buscar Tecnico ADM");
-        System.out.println("9- Calcular Salario");
+        System.out.println("9- Exibir Salario");
         System.out.println("10- Encerrar sessão");
     }
 
@@ -330,7 +330,7 @@ public class Main {
                         break;
                     }
 
-                    Operacoes.CalcularSalario(matricula);
+                    Operacoes.exibirSalario(matricula);
                     System.out.println("=-=-==-=-=-=-=-=-=-=-=-=-=-\n");
                     break;
                 case 10:

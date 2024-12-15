@@ -11,13 +11,16 @@ public class Operacoes {
 
     public static void cadastrarProfessor(Pessoa pessoa, Nivel nivelProfessor, Formacao formacaoProfessor, List<String> disciplinas){
 
-    Pessoa pessoa2 = buscarFuncionario(pessoa.getMatricula());
+        Pessoa pessoa2 = buscarFuncionario(pessoa.getMatricula());
         if(pessoa2 == null){
             Professor professor = new Professor(pessoa.getNome(), pessoa.getCpf(), pessoa.getDataNascimento(), pessoa.getGenero(), pessoa.getEndereco(), pessoa.getMatricula(), pessoa.getDepartamento(), pessoa.getCargaHoraria(), pessoa.getDataIngresso(), nivelProfessor, formacaoProfessor, disciplinas);
-
+            Double salario = CalcularSalario(professor);
+            professor.setSalario(salario);
+        
             banco.getArrayPessoas().add(professor);
             
             System.out.println("Professor cadastrado com sucesso!");
+
         }
         else{
             System.out.println("Essa matrícula já está cadastrado!");
@@ -30,7 +33,8 @@ public class Operacoes {
         Pessoa pessoa2 = buscarFuncionario(pessoa.getMatricula());
         if(pessoa2 == null){
             TecnicoADM tecnicoADM = new TecnicoADM(pessoa.getNome(), pessoa.getCpf(), pessoa.getDataNascimento(), pessoa.getGenero(), pessoa.getEndereco(), pessoa.getMatricula(), pessoa.getDepartamento(), pessoa.getCargaHoraria(), pessoa.getDataIngresso(), nivelTecnico, formacaoTecnico, insalubridade, funcaoGratificada);
-
+            Double salario = CalcularSalario(tecnicoADM);
+            tecnicoADM.setSalario(salario);
             banco.getArrayPessoas().add(tecnicoADM);
             System.out.println("Técnico ADM cadastrado com sucesso!");
        }
@@ -163,24 +167,32 @@ public class Operacoes {
         }
     }
 
-    public static void CalcularSalario(int matricula){
-        Pessoa pessoa = buscarFuncionario(matricula);
-        Double salario;
+    public static Double CalcularSalario(Pessoa pessoa){
+        Double salario = 0.0;
 
+        if(pessoa instanceof Professor professor){
+            salario = professor.calculaSalario();            
+        }
+        if(pessoa instanceof TecnicoADM tecnico){
+            salario = tecnico.calculaSalario();
+        }
+
+        return salario;
+    }
+
+    public static void exibirSalario(int matricula){
+        Pessoa pessoa = buscarFuncionario(matricula);
         if(pessoa instanceof Professor professor){
             System.out.println("Professor encontrado: ");
             imprimirProfessor(professor);
-            salario = professor.calculaSalario();
-            System.out.println("Salario: " + salario);
-            
+            System.out.println("Salario: " + professor.getSalario());
         }
         if(pessoa instanceof TecnicoADM tecnico){
             System.out.println("Tecnico encontrado: ");
             imprimirTecnicoADM(tecnico);
-            salario = tecnico.calculaSalario();
-            System.out.println("Salario: " + salario);;
+            System.out.println("Salario: " + tecnico.getSalario());;
         }
-    }
+    } 
 
     public static Pessoa buscarFuncionario(int matricula){
         for(Pessoa p : banco.getArrayPessoas()){
@@ -199,7 +211,7 @@ public class Operacoes {
 
     public static void imprimirTecnicoADM(TecnicoADM tecnicoADM){
         System.out.println("\nNome: " + tecnicoADM.getNome());
-        System.out.println("Função: " + tecnicoADM.getFuncaoGratificada());
+        System.out.println("Função: " + tecnicoADM.getDepartamento());
         System.out.println("Matricula: " + tecnicoADM.getMatricula());
     }
 }

@@ -47,7 +47,6 @@ public class Professor extends Pessoa implements Funcionario{
         }
         
         salarioFinal = salarioBase + percentualNivel + percentualFormacao;
-        this.setSalario(salarioFinal);
         return salarioFinal;
     }
 
