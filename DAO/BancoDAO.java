@@ -6,7 +6,8 @@ import model.*;;
 
 
 public class BancoDAO implements Serializable {
-    
+    private static final long serialVersionUID = 4839783881463727079L;
+
     private ArrayList<Pessoa> funcionarios;
     private final static String ARQUIVO_FUNCIONARIOS = "funcionarios.ser";
     private static BancoDAO banco;

@@ -5,6 +5,8 @@ import java.util.List;
 import Enum.*;
 
 public class Professor extends Pessoa implements Funcionario{
+    private static final long serialVersionUID = 4839783881463727079L;
+
     private Nivel nivelProfessor;
     private Formacao formacaoProfessor;
     private List<String> disciplinas;

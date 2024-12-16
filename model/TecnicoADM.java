@@ -5,6 +5,7 @@ import Enum.Genero;
 import Enum.Nivel;
 
 public class TecnicoADM extends Pessoa implements Funcionario{
+    private static final long serialVersionUID = 4839783881463727079L;
 
     private Nivel nivelTecnico;
     private Formacao formacaoTecnico;

@@ -2,6 +2,7 @@ package model;
 import java.io.Serializable;
 
 public class Endereco implements Serializable {
+    private static final long serialVersionUID = 4839783881463727079L;
 
     private String rua;
     private int numero;

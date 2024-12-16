@@ -211,7 +211,7 @@ public class Operacoes {
 
     public static void imprimirTecnicoADM(TecnicoADM tecnicoADM){
         System.out.println("\nNome: " + tecnicoADM.getNome());
-        System.out.println("Função: " + tecnicoADM.getDepartamento());
+        System.out.println("Departamento: " + tecnicoADM.getDepartamento());
         System.out.println("Matricula: " + tecnicoADM.getMatricula());
     }
 }

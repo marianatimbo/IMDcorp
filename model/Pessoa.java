@@ -4,7 +4,8 @@ import java.time.LocalDate;
 import Enum.Genero;
 
 public abstract class Pessoa implements Serializable {
-    
+    private static final long serialVersionUID = 4839783881463727079L;
+
     private String nome;
     private String cpf;
     private LocalDate dataNascimento;
